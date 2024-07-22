@@ -22,18 +22,14 @@ public class MainPage {
     private final By logo = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']");
     // кнопка Оформить заказ
     private final By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
-    // кнопка Булки
-    private final By bunsButton = By.xpath(".//span[text()='Булки']");
-    // Заголовок раздела Булки
-    private final By headerBunsSection = By.xpath(".//h2[text()='Булки']");
-    // кнопка Соусы
-    private final By saucesButton = By.xpath(".//span[text()='Соусы']");
-    // Заголовок раздела Соусы
-    private final By headerSaucesSection = By.xpath(".//h2[text()='Соусы']");
-    // кнопка Начинки
-    private final By fillingsButton = By.xpath(".//span[text()='Начинки']");
-    // Заголовок раздела Начинки
-    private final By headerFillingsSection = By.xpath(".//h2[text()='Начинки']");
+    // кнопка Булки в невыбранном состоянии
+    private final By bunsButton = By.xpath(".//span[text() = 'Булки']/parent::div");
+    // кнопка в конструкторе в выбранном состоянии
+     private final By selectedButton = By.xpath(".//div[contains(@class, 'current')]");
+    // кнопка Соусы в невыбранном состоянии
+    private final By saucesButton = By.xpath(".//span[text()='Соусы']/parent::div");
+    // кнопка Начинки в невыбранном состоянии
+    private final By fillingsButton = By.xpath(".//span[text()='Начинки']/parent::div");
 
     private final WebDriver driver;
 
@@ -67,21 +63,11 @@ public class MainPage {
         driver.findElement(bunsButton).click();
     }
 
-    @Step("Проверка того, что появился заголовок раздела «Булки»")
-    public boolean isHeaderBunsSectionDisplayed() {
-        return driver.findElement(headerBunsSection).isDisplayed();
-    }
-
     @Step("Клик по кнопке «Соусы»")
     public void clickSaucesButton() {
         new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.elementToBeClickable(saucesButton));
         driver.findElement(saucesButton).click();
-    }
-
-    @Step("Проверка того, что появился заголовок раздела «Соусы»")
-    public boolean isHeaderSaucesSectionDisplayed() {
-        return driver.findElement(headerSaucesSection).isDisplayed();
     }
 
     @Step("Клик по кнопке «Начинки»")
@@ -91,9 +77,9 @@ public class MainPage {
         driver.findElement(fillingsButton).click();
     }
 
-    @Step("Проверка того, что появился заголовок раздела «Начинки»")
-    public boolean isHeaderFillingsSectionDisplayed() {
-        return driver.findElement(headerFillingsSection).isDisplayed();
+    @Step("Получить текст выбранной кнопки")
+    public String getSelectedButtonText() {
+        return driver.findElement(selectedButton).getText();
     }
 
     @Step("Проверка наличия заголовка Соберите бургер")

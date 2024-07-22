@@ -11,6 +11,7 @@ import stellarburgers.pom.MainPage;
 import java.time.Duration;
 
 import static driver.WebDriverCreator.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class ConstructorTest {
@@ -31,21 +32,27 @@ public class ConstructorTest {
     public void bunsSectionTest() {
         mainPage.clickSaucesButton();
         mainPage.clickBunsButton();
-        mainPage.isHeaderBunsSectionDisplayed();
+        String expectedText = "Булки";
+        String actualText = mainPage.getSelectedButtonText();
+        assertEquals(expectedText, actualText);
     }
 
     @Test
     @DisplayName("Проверка перехода к разделу «Соусы»")
     public void saucesSectionTest() {
         mainPage.clickSaucesButton();
-        mainPage.isHeaderSaucesSectionDisplayed();
+        String expectedText = "Соусы";
+        String actualText = mainPage.getSelectedButtonText();
+        assertEquals(expectedText, actualText);
     }
 
     @Test
     @DisplayName("Проверка перехода к разделу «Начинки»")
     public void fillingsSectionTest() {
         mainPage.clickFillingsButton();
-        mainPage.isHeaderFillingsSectionDisplayed();
+        String expectedText = "Начинки";
+        String actualText = mainPage.getSelectedButtonText();
+        assertEquals(expectedText, actualText);
     }
 
     @After
