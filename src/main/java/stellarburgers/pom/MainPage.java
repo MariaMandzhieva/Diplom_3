@@ -14,12 +14,8 @@ public class MainPage {
     private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
     // кнопка Личный кабинет
     private final By personalAccButton = By.xpath(".//p[text()='Личный Кабинет']");
-    // кнопка Конструктор
-    private final By constructorButton = By.xpath(".//p[text()='Конструктор']");
     // заголовок Соберите бургер
     private final By assembleBurger = By.xpath(".//h1[text()='Соберите бургер']");
-    // Логотип
-    private final By logo = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']");
     // кнопка Оформить заказ
     private final By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
     // кнопка Булки в невыбранном состоянии
