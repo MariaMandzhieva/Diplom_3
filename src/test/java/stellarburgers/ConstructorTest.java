@@ -15,18 +15,20 @@ import static driver.WebDriverCreator.*;
 
 public class ConstructorTest {
     private WebDriver driver;
+    private MainPage mainPage;
 
     @Before
     public void setUp() {
         driver = createWebDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
+        mainPage = new MainPage(driver);
+        mainPage.openMainPage();
     }
 
     @Test
     @DisplayName("Проверка перехода к разделу «Булки»")
     public void bunsSectionTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickSaucesButton();
         mainPage.clickBunsButton();
         mainPage.isHeaderBunsSectionDisplayed();
@@ -35,8 +37,6 @@ public class ConstructorTest {
     @Test
     @DisplayName("Проверка перехода к разделу «Соусы»")
     public void saucesSectionTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickSaucesButton();
         mainPage.isHeaderSaucesSectionDisplayed();
     }
@@ -44,8 +44,6 @@ public class ConstructorTest {
     @Test
     @DisplayName("Проверка перехода к разделу «Начинки»")
     public void fillingsSectionTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickFillingsButton();
         mainPage.isHeaderFillingsSectionDisplayed();
     }

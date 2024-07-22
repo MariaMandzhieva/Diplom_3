@@ -28,12 +28,14 @@ public class LoginTest {
     private WebDriver driver;
     private User user;
     private UserApi userApi;
+    private MainPage mainPage;
 
 
     @Before
     public void setUp() {
         driver = createWebDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
         userApi = new UserApi();
 
         String email = (RandomStringUtils.randomAlphabetic(10) + "@yandex.ru").toLowerCase();
@@ -42,13 +44,14 @@ public class LoginTest {
 
         user = new User(email, password, name);
         userApi.createUser(user);
+
+        mainPage = new MainPage(driver);
+        mainPage.openMainPage();
     }
 
     @Test
     @DisplayName("Вход по кнопке «Войти в аккаунт» на главной")
     public void loginButtonTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -62,8 +65,6 @@ public class LoginTest {
     @Test
     @DisplayName("Вход через кнопку «Личный кабинет»")
     public void personalAccButtonTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickPersonalAccButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -77,8 +78,6 @@ public class LoginTest {
     @Test
     @DisplayName("Вход через кнопку в форме регистрации")
     public void loginButtonSignUpPageTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -109,8 +108,6 @@ public class LoginTest {
     @Test
     @DisplayName("Вход через кнопку в форме восстановления пароля")
     public void loginButtonResetPasswordPageTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);

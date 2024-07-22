@@ -26,6 +26,7 @@ public class SignUpTest {
     private WebDriver driver;
     private User user;
     private UserApi userApi;
+    private MainPage mainPage;
 
     @Before
     public void setUp() {
@@ -38,13 +39,14 @@ public class SignUpTest {
 
         user = new User(email, password, name);
         userApi = new UserApi();
+
+        mainPage = new MainPage(driver);
+        mainPage.openMainPage();
     }
 
     @Test
     @DisplayName("Проверка успешной регистрации")
     public void signUpTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -69,8 +71,6 @@ public class SignUpTest {
     @Test
     @DisplayName("Проверка появления сообщения Некорретный пароль")
     public void signUpWithIncorrectPassTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);

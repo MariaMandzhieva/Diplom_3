@@ -21,6 +21,7 @@ public class PersonalAccTest {
     private WebDriver driver;
     private User user;
     private UserApi userApi;
+    private MainPage mainPage;
 
     @Before
     public void setUp() {
@@ -35,13 +36,14 @@ public class PersonalAccTest {
 
         user = new User(email, password, name);
         userApi.createUser(user);
+
+        mainPage = new MainPage(driver);
+        mainPage.openMainPage();
     }
 
     @Test
     @DisplayName("Проверка перехода в Личный кабинет по клику на «Личный кабинет»")
     public void openPersonalAccByPersonalAccButtonTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -56,8 +58,6 @@ public class PersonalAccTest {
     @Test
     @DisplayName("Проверка перехода из личного кабинета в конструктор по клику на «Конструктор")
     public void openConstructorByConstructorButtonTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -74,8 +74,6 @@ public class PersonalAccTest {
     @Test
     @DisplayName("Проверка перехода из личного кабинета в конструктор по клику на логотип")
     public void openConstructorByLogoButtonTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -92,8 +90,6 @@ public class PersonalAccTest {
     @Test
     @DisplayName("Проверка выхода по кнопке «Выйти» в личном кабинете")
     public void exitTest() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
         mainPage.clickLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
